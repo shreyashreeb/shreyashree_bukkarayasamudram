@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-3">Contact List</h2>
+        {% if contacts %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Created Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>{{ contact.created_at|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                <!-- Add a View button here -->
+                                <a href="{% url 'contact_detail' contact.pk %}" class="btn btn-info">View</a>
+                                <!-- Existing Edit button -->
+                                <a href="{% url 'contact_edit' contact.pk %}" class="btn btn-primary">Edit</a>
+                                <!-- Existing Delete button -->
+                                <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No contacts found.</p>
+        {% endif %}
+        <a href="{% url 'contact_new' %}" class="btn btn-success">Add Contact</a>
+    </div>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">&copy; 2023 <span style="color: red;">Created by Shreya Shree Bukkarayasamudram</span></span>
+        </div>
+    </footer>
+</body>
+</html>
