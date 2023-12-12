@@ -29,11 +29,8 @@
                             <td>{{ contact.phone }}</td>
                             <td>{{ contact.created_at|date:"Y-m-d H:i" }}</td>
                             <td>
-                                <!-- Add a View button here -->
                                 <a href="{% url 'contact_detail' contact.pk %}" class="btn btn-info">View</a>
-                                <!-- Existing Edit button -->
                                 <a href="{% url 'contact_edit' contact.pk %}" class="btn btn-primary">Edit</a>
-                                <!-- Existing Delete button -->
                                 <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
