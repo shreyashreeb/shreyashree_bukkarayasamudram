@@ -6,12 +6,53 @@
     <title>Contacts List</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff; /* Light blue background */
+        }
+        .container {
+            background-color: #ffffff; /* White background for container */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); /* subtle shadow for container */
+        }
+        .footer {
+            background-color: #f8f9fa; /* Very light gray for footer */
+            color: #212529; /* Dark text for footer */
+        }
+        .btn-view {
+            color: #ffffff;
+            background-color: hwb(205 0% 20%); /* Blue for View button */
+            border-color:hwb(205 0% 20%);
+        }
+        .btn-edit {
+            color: hsl(0, 0%, 100%);
+            background-color: hwb(205 0% 20%); /* Orange for Edit button */
+            border-color: hwb(205 0% 20%);
+        }
+        .btn-delete {
+            color: #ffffff;
+            background-color: #ff4444; /* Red for Delete button */
+            border-color: #ff0000;
+        }
+        .btn-add {
+            color: #fff;
+            background-color: hwb(111 2% 26%); /* Green for Add Contact button */
+            border-color: #ffffff;
+        }
+        thead {
+            background-color: #e9ecef; /* Light gray background for table header */
+        }
+        .text-muted {
+            color: #6c757d!important; /* Subtle text color for footer */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-4">
-        <h2 class="mb-3">Contacts</h2>
+        <h2 class="mb-3" style="color: hsl(0, 0%, 0%);">Contacts</h2> <!-- Blue heading -->
         {% if contacts %}
-            <table class="table">
+            <table class="table table-hover"> <!-- Added hover effect for table rows -->
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -29,9 +70,9 @@
                             <td>{{ contact.phone }}</td>
                             <td>{{ contact.created_at|date:"Y-m-d H:i" }}</td>
                             <td>
-                                <a href="{% url 'contact_detail' contact.pk %}" class="btn btn-info">View</a>
-                                <a href="{% url 'contact_edit' contact.pk %}" class="btn btn-primary">Edit</a>
-                                <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'contact_detail' contact.pk %}" class="btn btn-view">View</a>
+                                <a href="{% url 'contact_edit' contact.pk %}" class="btn btn-edit">Edit</a>
+                                <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-delete">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -40,12 +81,15 @@
         {% else %}
             <p>No contacts found.</p>
         {% endif %}
-        <a href="{% url 'contact_new' %}" class="btn btn-success">Add Contact</a>
+        <a href="{% url 'contact_new' %}" class="btn btn-add">Add Contact</a>
     </div>
     <footer class="footer mt-auto py-3">
         <div class="container text-center">
             <span class="text-muted">&copy; 2023 <span style="color: red;">Created by Shreya Shree Bukkarayasamudram</span></span>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
